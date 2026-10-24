@@ -55,6 +55,7 @@ lib/core/
 │   └── result.dart                 # sealed Result<T> { Success<T>, Failure<T> } + fold/map helpers (imports failures.dart `as failures`, see D8)
 │
 ├── logging/
+│   ├── log_level.dart              # our own LogLevel enum (debug/info/warning/error); keeps `logger` out of config
 │   ├── app_logger.dart             # abstract AppLogger contract (mockable)
 │   └── app_logger_impl.dart        # wraps `logger` package; level by flavor
 │
@@ -208,8 +209,8 @@ test/
 **Phase 0 — Scaffold**
 1. ✅ `pubspec.yaml` (dependencies only) — closed 2026-10-24 (Flutter 3.47.7 / Dart 3.13.5)
 2. ✅ `analysis_options.yaml` — closed 2026-10-24
-3. `.gitignore` + `env/dev.example.json`
-3a. `core/config/flavor.dart` → `core/config/app_config.dart` + test
+3. ✅ `.gitignore` + `env/dev.example.json` — closed 2026-10-24
+3a. ✅ `core/config/flavor.dart` → `core/logging/log_level.dart` → `core/config/app_config.dart` + tests — closed 2026-10-24 (Phase 0 complete)
 
 **Phase 1 — Core primitives (TDD)**
 4. `core/error/exceptions.dart`, `core/error/failures.dart`
