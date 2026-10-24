@@ -1,0 +1,63 @@
+# News Hub — static analysis rules.
+# Source of truth for the typing and logging rules in CLAUDE.md §4.
+# `flutter analyze` must report zero issues before any file is considered done.
+
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    # No implicit downcasts from dynamic (e.g. jsonDecode results).
+    strict-casts: true
+    # Inference must never silently fall back to dynamic.
+    strict-inference: true
+    # Generic types must always have explicit type arguments (no bare `List`, `Map`).
+    strict-raw-types: true
+
+  errors:
+    # Rule violations that fail the build, not just warn.
+    avoid_dynamic_calls: error
+    avoid_annotating_with_dynamic: error
+    avoid_print: error
+    always_declare_return_types: error
+    type_annotate_public_apis: error
+    unawaited_futures: error
+    discarded_futures: error
+
+  exclude:
+    # Generated code is committed (D6) but never hand-edited or linted.
+    - "**/*.g.dart"
+    - build/**
+    - android/**
+    - ios/**
+
+linter:
+  rules:
+    # --- Typing (CLAUDE.md §4.1) ---
+    avoid_dynamic_calls: true
+    avoid_annotating_with_dynamic: true
+    always_declare_return_types: true
+    type_annotate_public_apis: true
+    # Locals may be inferred; public APIs must be explicit (above).
+    omit_local_variable_types: false
+
+    # --- Logging (CLAUDE.md §4.3) ---
+    avoid_print: true
+
+    # --- Async safety ---
+    unawaited_futures: true
+    discarded_futures: true
+
+    # --- Immutability & performance ---
+    prefer_final_fields: true
+    prefer_final_locals: true
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: true
+
+    # --- Structure & readability ---
+    sort_constructors_first: true
+    directives_ordering: true
+    always_use_package_imports: true
+
+    # Trailing commas are owned by `dart format`, not the linter.
+    require_trailing_commas: false
