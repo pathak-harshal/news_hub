@@ -1,7 +1,7 @@
 {
   "FLAVOR": "dev",
   "API_BASE_URL": "https://newsapi.org/v2",
-  "API_KEY": "7d877647455043adac6e862e69b2cdf0",
+  "API_KEY": "YOUR_NEWSAPI_KEY",
   "ENABLE_HTTP_LOGGING": true,
   "LOG_LEVEL": "debug"
 }
